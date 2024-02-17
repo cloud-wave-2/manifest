@@ -6,4 +6,4 @@ commonLabels:
 
 images:
   - name: 621973965804.dkr.ecr.ap-northeast-2.amazonaws.com/wave-repo-web
-    newTag: staging-tag
+    newTag: "4"
