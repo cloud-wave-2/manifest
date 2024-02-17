@@ -1,4 +1,4 @@
 resources:
-  - overlays/production
-  - overlays/staging
+  - overlay/production
+  - overlay/staging
 
