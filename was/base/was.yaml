@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: was-server
-        image: 621973965804.dkr.ecr.ap-northeast-2.amazonaws.com/wave-repo:4
+        image: 621973965804.dkr.ecr.ap-northeast-2.amazonaws.com/wave-repo:new_value
         envFrom:
         - secretRef:
             name: db-info
