@@ -9,7 +9,5 @@ resources:
 
 
 images:
-- name: 950421566900.dkr.ecr.ap-northeast-2.amazonaws.com/wave-repo
-  newTag: "88"
-- name: 950421566900.dkr.ecr.ap-northeast-2.amazonaws.com/wave-repo-web
-  newTag: "88"
+- name: 621973965804.dkr.ecr.ap-northeast-2.amazonaws.com/wave-repo-web
+  newTag: "4"
