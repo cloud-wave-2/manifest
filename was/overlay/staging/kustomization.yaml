@@ -1,9 +1,6 @@
 bases:
   - ../../base
 
-commonLabels:
-  environment: staging
-
 images:
   - name: 621973965804.dkr.ecr.ap-northeast-2.amazonaws.com/wave-repo
     newTag: "4"
