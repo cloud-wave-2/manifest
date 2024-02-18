@@ -1,8 +1,5 @@
-bases:
+resources:
   - ../../base
-
-commonLabels:
-  environment: production
 
 images:
   - name: 621973965804.dkr.ecr.ap-northeast-2.amazonaws.com/wave-repo
