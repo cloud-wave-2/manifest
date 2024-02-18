@@ -34,7 +34,7 @@ spec:
       - envFrom:
         - secretRef:
             name: was-port
-        image: 621973965804.dkr.ecr.ap-northeast-2.amazonaws.com/wave-repo-web:7
+        image: 621973965804.dkr.ecr.ap-northeast-2.amazonaws.com/wave-repo-web:9
         name: web-server
         ports:
         - containerPort: 3000
