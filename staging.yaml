@@ -1,52 +1,71 @@
 apiVersion: v1
 data:
-  DATABASE: b2xpdmVfeW91bmc=
-  HOST: dGVzdC1kYi5janl1aWNxcTA2NzUuYXAtbm9ydGhlYXN0LTIucmRzLmFtYXpvbmF3cy5jb20=
-  PASSWD: cXdlcjEyMzQ=
-  Port: MzMwNg==
-  USER: YWRtaW4=
+  WAS: d2FzLW5sYg==
 kind: Secret
 metadata:
-  name: db-info
+  name: was-port
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  annotations:
-    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
-    service.beta.kubernetes.io/aws-load-balancer-type: internal
-  name: was-nlb
+  name: web-cluster
 spec:
   ports:
-  - port: 4000
-    targetPort: 4000
+  - port: 80
+    targetPort: 3000
   selector:
-    app: was-server
-  type: LoadBalancer
+    app: web-server
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: was-server
+  name: web-server
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: was-server
+      app: web-server
   template:
     metadata:
       labels:
-        app: was-server
+        app: web-server
     spec:
       containers:
       - envFrom:
         - secretRef:
-            name: db-info
-        image: 621973965804.dkr.ecr.ap-northeast-2.amazonaws.com/wave-repo:13
-        name: was-server
+            name: was-port
+        image: 621973965804.dkr.ecr.ap-northeast-2.amazonaws.com/wave-repo-web:11
+        name: web-server
         ports:
-        - containerPort: 4000
+        - containerPort: 3000
         resources:
           limits:
             cpu: 500m
             memory: 128Mi
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+  name: web-ingress
+spec:
+  ingressClassName: alb-ingress-class
+  rules:
+  - http:
+      paths:
+      - backend:
+          service:
+            name: web-cluster
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+---
+apiVersion: networking.k8s.io/v1
+kind: IngressClass
+metadata:
+  name: alb-ingress-class
+spec:
+  controller: ingress.k8s.aws/alb
