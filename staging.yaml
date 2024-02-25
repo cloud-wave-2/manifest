@@ -42,7 +42,7 @@ spec:
       - envFrom:
         - secretRef:
             name: db-info
-        image: 621973965804.dkr.ecr.ap-northeast-2.amazonaws.com/wave-repo:17
+        image: 621973965804.dkr.ecr.ap-northeast-2.amazonaws.com/wave-repo:18
         name: was-server
         ports:
         - containerPort: 4000
