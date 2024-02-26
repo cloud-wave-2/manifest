@@ -28,7 +28,7 @@ spec:
                 - web
       containers:
       - name: web-server
-        image: kim521/web:a
+        image: kim521/web:b
         envFrom:
         - secretRef:
             name: was-port
