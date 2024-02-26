@@ -28,7 +28,7 @@ spec:
                 - web
       containers:
       - name: web-server
-        image: kim521/web:a
+        image: 621973965804.dkr.ecr.ap-northeast-2.amazonaws.com/wave-repo-web:new_value
         envFrom:
         - secretRef:
             name: was-port
