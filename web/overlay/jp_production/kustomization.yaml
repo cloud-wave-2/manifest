@@ -1,0 +1,6 @@
+resources:
+  - ../../base  
+
+images: 
+  - name: 621973965804.dkr.ecr.ap-northeast-1.amazonaws.com/wave-repo-web
+    newTag: "10"
